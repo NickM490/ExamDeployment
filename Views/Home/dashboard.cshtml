@@ -28,46 +28,34 @@
             </tr>
             </thead>
             <tbody>
-                @foreach (var act in Model)
+            @foreach (var act in Model)
             {
                 <tr>
 
                     @if((DateTime.Now < @act.Date))
                     {
 
-                <td><a href="show/@act.HappeningId">@act.Title</a></td>
-                <td>@act.Date.ToShortDateString() at @act.StartTimeValue</td>
-                <td>@act.Duration @act.HoursMinutesDays</td>
-                <td>@act.Creator.Name</td>
-                <td>@act.RSVPs.Count</td>
-                @if (act.UserId == ViewBag.UserId)
-                {
-                    {
-                    <td><a href="delete/@act.HappeningId">Delete</a></td>
-                
-                    }
-                
-                }
-                else if (act.RSVPs.Any(r => r.UserId == ViewBag.UserId))
-                {
-                    <td><a href="rsvp/@act.HappeningId">Un-Join</a></td>
-                }
-                else
-                {
-                    <td><a href="unrsvp/@act.HappeningId"">Join</a></td>
-                }
-                }
-            </tr>
-
-
-
-
-
+                        <td><a href="show/@act.HappeningId">@act.Title</a>    </td>
+                        <td>@act.Date.ToShortDateString() at @act.StartTimeValue     </td>
+                        <td>@act.Duration @act.HoursMinutesDays    </td>
+                        <td>@act.Creator.Name    </td>
+                        <td>@act.RSVPs.Count   </td>
+                        @if (act.UserId == ViewBag.UserId)
+                        {                          
+                            <td>   <a href="delete/@act.HappeningId">Delete</a>  </td>
+                        
+                        }
+                        else if (act.RSVPs.Any(r => r.UserId == ViewBag.UserId))
+                        {
+                            <td>   <a href="rsvp/@act.HappeningId">Un-Join</a>   </td>
+                        }
+                        else
+                        {
+                            <td>  <a href="unrsvp/@act.HappeningId">Join</a>   </td>
+                        }
+                    }   
+                </tr>
             }
             </tbody>
-
-
-
-
-
+            </table>
     <a href="/newhappening" class="btn btn-info" role="button">Add New Activity</a>

@@ -3,7 +3,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Activity Detail</h1>
+    <h1 class="display-4">Modelivity Detail</h1>
     <a href="dashboard" class="btn btn-primary">Dashboard</a>
 
     <!-- <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> -->
@@ -29,16 +29,16 @@
 @if (Model.UserId == ViewBag.UserId)
                 {
                     {
-                    <a href="delete/@act.HappeningId">Delete</a>
+                    <a href="delete/@Model.HappeningId">Delete</a>
                 
                     }
                 
                 }
                 else if (Model.RSVPs.Any(r => r.UserId == ViewBag.UserId))
                 {
-                    <a href="unrsvp/@act.HappeningId">Un-Join</a>
+                    <a href="unrsvp/@Model.HappeningId">Un-Join</a>
                 }
                 else
                 {
-                    <a href="rsvp/@act.HappeningId">Join</a>
+                    <a href="rsvp/@Model.HappeningId">Join</a>
                 }
