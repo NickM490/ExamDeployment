@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Activity Detail</h1>
+    <a href="dashboard" class="btn btn-primary">Dashboard</a>
+
+    <!-- <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> -->
+</div>
+
+
+@model Happening
+
+<h1>@Model.Title</h1>
+<h4>Created By: @Model.Creator.Name</h4>
+<h5>Description: </h5>
+<h6>@Model.Description</h6>
+<hr>
+<hr>
+<h4>Participants:</h4>
+<ul>
+    @foreach(var r in @Model.RSVPs)
+    {
+        <li>@r.Guest.Name</li>
+    }
+</ul>
+
+@if (Model.UserId == ViewBag.UserId)
+                {
+                    {
+                    <a href="delete/@act.HappeningId">Delete</a>
+                
+                    }
+                
+                }
+                else if (Model.RSVPs.Any(r => r.UserId == ViewBag.UserId))
+                {
+                    <a href="unrsvp/@act.HappeningId">Un-Join</a>
+                }
+                else
+                {
+                    <a href="rsvp/@act.HappeningId">Join</a>
+                }

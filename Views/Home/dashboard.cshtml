@@ -1,0 +1,73 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Happening>
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome  @ViewBag.ThisUser.Name </h1> <a href="/logout" class="btn btn-danger row float-right">Log Out</a>
+    <hr>
+    <hr>
+<br>
+    <!-- <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> -->
+</div>
+<br>
+
+<div class="container">
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Activity</th>
+                <th scope="col">Date and Time</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Event Coordinator</th>
+                <th scope="col">No. of Participants</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var act in Model)
+            {
+                <tr>
+
+                    @if((DateTime.Now < @act.Date))
+                    {
+
+                <td><a href="show/@act.HappeningId">@act.Title</a></td>
+                <td>@act.Date.ToShortDateString() at @act.StartTimeValue</td>
+                <td>@act.Duration @act.HoursMinutesDays</td>
+                <td>@act.Creator.Name</td>
+                <td>@act.RSVPs.Count</td>
+                @if (act.UserId == ViewBag.UserId)
+                {
+                    {
+                    <td><a href="delete/@act.HappeningId">Delete</a></td>
+                
+                    }
+                
+                }
+                else if (act.RSVPs.Any(r => r.UserId == ViewBag.UserId))
+                {
+                    <td><a href="rsvp/@act.HappeningId">Un-Join</a></td>
+                }
+                else
+                {
+                    <td><a href="unrsvp/@act.HappeningId"">Join</a></td>
+                }
+                }
+            </tr>
+
+
+
+
+
+            }
+            </tbody>
+
+
+
+
+
+    <a href="/newhappening" class="btn btn-info" role="button">Add New Activity</a>

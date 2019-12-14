@@ -1,0 +1,65 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Create an Activity</h1>
+    <hr>
+    <a href="dashboard" class="btn btn-primary">Dashboard</a>
+    <!-- <a href="dashboard" class="btn btn-primary">Dashboard</a> <a href="/orders" class="btn btn-primary">Orders</a> <a href="/logout" class="btn btn-danger">Log Out</a> -->
+<br>
+    <!-- <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> -->
+</div>
+
+
+<div class="container">
+
+    <div class="row">
+
+
+        <div class="col-md-6 text-center" >
+                @model Happening
+                <hr>
+                    <form asp-action="Create" asp-controller="Home" method="post">
+                        
+                        <span asp-validation-for="Title"></span>
+                        <label asp-for="Title">Title</label>
+                        <input asp-for="Title">
+                <hr>
+
+                        <span asp-validation-for="StartTimeValue"></span>
+                        <label asp-for="StartTimeValue">Time</label>
+                        <input type="Time" asp-for="StartTimeValue">
+                <hr>
+
+                        <span asp-validation-for="Duration"></span>
+                        <label asp-for="Duration">Duration</label>
+                        <input asp-for="Duration">
+
+                        <span asp-validation-for="HoursMinutesDays"></span>
+                        <label asp-for="HoursMinutesDays">Select</label>
+                        <select asp-for="HoursMinutesDays">
+                            <option value="Days">Days</option>
+                            <option value="Minutes">Minutes</option>
+                            <option value="Hours">Hours</option>
+
+                        </select>
+                <hr>
+
+                        <span asp-validation-for="Date"></span>
+                        <label asp-for="Date">Date</label>
+                        <input type="Date" asp-for="Date">
+                <hr>
+
+                        <span asp-validation-for="Description"></span>
+                        <label asp-for="Description">Description</label>
+                        <textarea asp-for="Description" cols="30" rows="10"></textarea>
+                <hr>
+
+                        
+                        <input value="Create Activity" type="submit">    
+                        
+                    </form>
+
+            </div>
